@@ -1,9 +1,4 @@
-/*
 
-
-
-
-*/
 #ifndef _TSTEERING_H_
 #define _TSTEERING_H_
 
@@ -14,7 +9,7 @@ class TaskSteering : public Task {
     TaskSteering(SLog *log, const char*name, uint8_t taskID, CoopSemaphore *taskSema);
 
     void init(void) {;};      // implementation form abstract class
-    void begin(bool allowLog = 0); 
+    bool begin(bool allowLog = 0); 
     void update(bool armed, bool allowLog = 0){;};
     void update(TaskData *data, uint8_t preventLogging = 1);
 
@@ -22,6 +17,10 @@ class TaskSteering : public Task {
     TaskData *getMockedData(TaskData *td, uint8_t mode) {
       return td;
     }
+
+  private:
+
+
 };
 
 

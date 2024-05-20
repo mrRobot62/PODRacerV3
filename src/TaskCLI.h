@@ -13,7 +13,7 @@ class TaskCLI : public Task {
     TaskCLI(SLog *log, const char*name, uint8_t taskID, CoopSemaphore *taskSema);
 
     void init(void) {;};      // implementation form abstract class
-    void begin(bool allowLog = 0) ;        
+    bool begin(bool allowLog = 0) ;        
     void update(bool armed, bool allowLog = 0);
 
     TaskData *getTaskData() {return bbd;};

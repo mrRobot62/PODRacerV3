@@ -18,7 +18,7 @@ class BlinkPattern : public Task {
     BlinkPattern(SLog *log, const char* name, uint8_t taskID, CoopSemaphore *taskSema=nullptr);
     // virtual ~BlinkPattern(){};
     void init(void) {;};      // implementation form abstract class
-    void begin(bool allowLog = 0);     // implementation form abstract class
+    bool begin(bool allowLog = 0);     // implementation form abstract class
     //void update(bool allowLog = 0);
     void update(uint8_t pattern, bool allowLog = 0);      // special method only for TaskBlink
     void update(bool armed, bool allowLog = 0){;};        // implementation of virtual method from Task.h

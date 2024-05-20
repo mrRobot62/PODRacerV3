@@ -55,3 +55,31 @@ The ESC for the thruster-brushless motor is an single esc connected with the PWM
 # PODRacer FlightController
 ## Flashen
 
+
+
+# Arduino datatypes and size
+
+| dtype    | alternative |        size         |             range              |
+| -------- | :---------: | :-----------------: | :----------------------------: |
+| INTEGER  |             |                     |                                |
+| -------- | ----------- | ------------------- | ------------------------------ |
+| char     |   int8_t    |          1          |          -128 to 127           |
+| bool     |     ./.     |          1          |             0 to 1             |
+| uint8_t  |    uchar    |          1          |            0 to 255            |
+| int8_t   |    char     |          1          |          -128 to 127           |
+| uint16_t |    uint     |          2          |          0 to 65,535           |
+| int16_t  |     int     |          2          |       -32,768 to 32,767        |
+| int      |   int16_t   |          2          |       -32,768 to 32,767        |
+| word     |  uint16_t   |          2          |          0 to 65,535           |
+| long     |             |          4          | -2,147,483,648 to 2,147483,647 |
+| ulong    |             |          4          |       0 to 4,294,967,295       |
+| -------- | ----------- | ------------------- | ------------------------------ |
+| DECIMAL  |             |                     |                                |
+| -------- | ----------- | ------------------- | ------------------------------ |
+| float    |             |          4          | 3.4028235E-38 to 3.4028235E+38 |
+| double   |             |          4           | 3.4028235E-38 to 3.4028235E+38 |
+| string   |             | 1 byte + # of chars |   strings terminated with \0   |
+|          |             |                     |                                |
+|          |             |                     |                                |
+|          |             |                     |                                |
+

@@ -54,7 +54,7 @@ class TaskSurface : public Task {
     TaskSurface(SLog *log, const char*name, uint8_t taskID, CoopSemaphore *taskSema, HardwareSerial *bus);
 
     void init(void) {;};      // implementation form abstract class
-    void begin(bool allowLog = 0) ;      
+    bool begin(bool allowLog = 0) ;      
     void update(bool allowLog = 0) {;};
     void update(bool armed, bool allowLog = 0);
     
@@ -96,6 +96,8 @@ class TaskSurface : public Task {
     VL53L1X *tof;
 #endif    
 
+    TDataAll mspDataAll;
+    
     SimpleKalmanFilter *skfToF, *skfLidar;
 
     double skfE = 0.02;      // we assume a loop in 50ms, to be adjusted if filter is not good enough

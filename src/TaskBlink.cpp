@@ -6,13 +6,17 @@ BlinkPattern::BlinkPattern(SLog *log, const char* name, uint8_t taskID, CoopSema
 }
 
 /** do some initializing stuff **/
-void BlinkPattern::begin(bool allowLog) {
-    reset();
-    for (uint8_t i=0; i < sizeof(pins); i++) {
-      pinMode(pins[i], OUTPUT);
-    }
-    sprintf(buffer, "begin() - task ready");
-    log->info(buffer, true, _tname);
+bool BlinkPattern::begin(bool allowLog) {
+  // we assume, we do not have errors ;-)
+  this->setInternalError(this->_id, 0);
+  reset();
+  for (uint8_t i=0; i < sizeof(pins); i++) {
+    pinMode(pins[i], OUTPUT);
+  }
+  sprintf(buffer, "begin() - task ready");
+  log->info(buffer, true, _tname);
+
+  return true;
 }
 
 void BlinkPattern::update(uint8_t blinkPattern, bool allowLog) {

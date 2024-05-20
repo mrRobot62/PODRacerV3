@@ -103,7 +103,7 @@
 // Important note:
 // the order number is how mixper.cpp will read output data from the 
 // task, means: higher task (priority), will override (or adapt) less task data
-// side note: if an error occured, task ID is the first byte of an error byte !
+// side note: if an error occured, task ID is the msb byte of the error word !
 //              example: 0b00000000 00000000
 //                         |      | |______|  => 255 possible error codes
 //                         |      |
@@ -152,7 +152,7 @@
 
 #define ROLL  0     // internal channel mapping set A(Roll) on position 0
 #define PITCH 1     // dito for E(Pitch)
-#define THRUST 7    // dito for T(Throttle) -> forward THRUST ESC -> we used the throttle gimbal for flying forward
+#define THRUST 5    // dito for T(Throttle) -> forward THRUST ESC -> we used the throttle gimbal for flying forward
 #define YAW 3       // dito for R(Yaw)
 #define ARMING 4    // ch5 for arming/disarming
 //#define AUX1      // no AUX1
@@ -166,6 +166,10 @@
 // value is used for isGimbalMin/Max
 //#define CENTER_RANGE 50 
 
+// normally used for struct data (see globalvars.h)
+#define CH_R 0
+#define CH_P 1
+#define CH_Y 2
 
 
 //------------------------------------------------------------------------------------------------------------

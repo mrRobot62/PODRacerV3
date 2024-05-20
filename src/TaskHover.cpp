@@ -5,9 +5,11 @@ TaskHover::TaskHover(SLog *log, const char*name, uint8_t taskID, CoopSemaphore *
     //bbd = new TaskData();
 }
 
-void TaskHover::begin(bool allowLog) {
+bool TaskHover::begin(bool allowLog) {
   sprintf(buffer, "begin() - task ready - allowLogging: %d", allowLog);
   log->info(buffer, true, name);
+  // we assume, we do not have errors ;-)
+  this->setInternalError(this->_id, 0);
 
   resetTaskData();
   sprintf(buffer, "reset hover buffer: FW: %s, TaskID:%d, Armed:%d, ch[HOVERING]:%d, ",
@@ -16,6 +18,7 @@ void TaskHover::begin(bool allowLog) {
           bbd->data.is_armed,
           bbd->data.ch[HOVERING]);
   log->info(buffer, true, _tname);  
+  return true;
 }
 
 void TaskHover::update(bool armed, bool allowLog) {

@@ -5,6 +5,7 @@
 ***********************************************************************************************/
 
 // PODRacer use CooperativeTask mechanism
+#include <Arduino.h>
 #include <CoopTaskBase.h>
 #include <CoopTask.h>
 #include <CoopSemaphore.h>
@@ -15,9 +16,9 @@
 #include "global_utils.h"
 #include "globalvars.h"
 
-//#include "FS.h"
-//#include <LittleFS.h>
-//#include <ArduinoJson.h>  
+#include "FS.h"
+#include <LittleFS.h>
+#include <ArduinoJson.h>  
 
 // PODRacer Classes/Stuff
 #include "Mixer.h"              // this is not a task; responsible to calculate new writings for receiver, based on all below tasks
@@ -36,6 +37,8 @@
 TaskList taskList ;
 uint16_t ARMING_VALUE;
 uint8_t CENTER_RANGE;
+
+
 
 const char* _tname = "MAIN";         // used to log MAIN output
 
@@ -137,7 +140,7 @@ void callbackTaskSteering() {
 /* RUN this callBack function for endless loop this task */
 void callbackTaskOpticalFlow() {
   unsigned long lastMillis = millis();
-  TaskOpticalFlow *obj = new TaskOpticalFlow(&logger, "STEER", TASK_OPTICALFLOW, &taskSema);
+  TaskOpticalFlow *obj = new TaskOpticalFlow(&logger, "STEER", TASK_OPTICALFLOW, PIN_PMW3901, &taskSema);
   obj->begin(ALLOW_LOGGING_OFLOW);
   mixer.addTask(obj, TASK_OPTICALFLOW);
   for(;;) {

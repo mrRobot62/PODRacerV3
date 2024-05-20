@@ -42,7 +42,7 @@ class Task : public PODRacer {
     };
     // virtual ~Task();
     virtual void init(void) = 0;
-    virtual void begin(bool allowLog = 0) = 0;
+    virtual bool begin(bool allowLog = 0) = 0;
     virtual void update(bool armed, bool allowLog = 0) = 0;
 
     //virtual void update(TaskData *data, uint8_t preventLogging = 1);   // use with a data struct as return 
@@ -103,6 +103,11 @@ class Task : public PODRacer {
     void setInternalError(uint8_t taskID, uint8_t code) {
       this->internal_error_occured = (code > 0)? true: false;
       this->internal_error_code = (taskID << 8 ) + code;
+    }
+
+    /* reset an internal error. Same as using setInternalError(taskID,0) */
+    void resetInternalError(uint8_t taskID) {
+      setInternalError(taskID, 0);
     }
 
   protected:

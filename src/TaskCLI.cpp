@@ -6,7 +6,10 @@ TaskCLI::TaskCLI(SLog *log, const char*name, uint8_t taskID, CoopSemaphore *task
     cli_enabled = false;
 }
 
-void TaskCLI::begin(bool allowLog) {
+bool TaskCLI::begin(bool allowLog) {
+  // we assume, we do not have errors ;-)
+  this->setInternalError(this->_id, 0);
+
   sprintf(buffer, "begin() - task ready - allowLogging: %d", allowLog);
   log->info(buffer, true, name);
 
@@ -17,6 +20,8 @@ void TaskCLI::begin(bool allowLog) {
           bbd->data.is_armed,
           bbd->data.ch[HOVERING]);
   log->info(buffer, true, _tname);  
+
+  return true;
 }
 
 void TaskCLI::update(bool armed, bool allowLog) {
